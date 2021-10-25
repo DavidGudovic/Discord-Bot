@@ -519,3 +519,56 @@ Caused by: java.lang.RuntimeException: Not success status code: 403
 2021-10-25 14:26:15.554  INFO 11564 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"track":"QAAAfgIAG0VtaW5lbSAtIExvc2UgWW91cnNlbGYgW0hEXQAJbXN2b2d1ZTIzAAAAAAAE8aAAC19ZaHlwLV9oWDJzAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9X1loeXAtX2hYMnMAB3lvdXR1YmUAAAAAAAAAAA==","volume":100,"guildId":"901221866797162547","op":"play"}
 2021-10-25 14:31:40.352  INFO 11564 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"track":"QAAAjwIAKkVtaW5lbSAtIFdpdGhvdXQgTWUgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALRW1pbmVtTXVzaWMAAAAAAASMEAALWVZrVXZtRFEzSFkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1ZVmtVdm1EUTNIWQAHeW91dHViZQAAAAAAAAAA","volume":100,"guildId":"901221866797162547","op":"play"}
 2021-10-25 14:36:39.032  INFO 11564 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"track":"QAAAgAIAG0VtaW5lbSAtIFJhcCBHb2QgKEV4cGxpY2l0KQALRW1pbmVtTXVzaWMAAAAAAAWlUAALWGJHc19xSzJQUUEAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1YYkdzX3FLMlBRQQAHeW91dHViZQAAAAAAAAAA","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-25 15:11:37.725  INFO 11564 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62410 -- CloseStatus[code=1006, reason=]
+2021-10-25 15:11:37.725  INFO 11564 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 15:11:54.760  INFO 11564 --- [XNIO-1 task-55] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:60325
+2021-10-25 15:11:54.766  INFO 11564 --- [XNIO-1 task-55] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:60325
+2021-10-25 15:12:36.307  INFO 11564 --- [XNIO-1 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:60325 -- CloseStatus[code=1006, reason=]
+2021-10-25 15:12:36.307  INFO 11564 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 15:12:52.773  INFO 11564 --- [XNIO-1 task-56] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:57238
+2021-10-25 15:12:52.776  INFO 11564 --- [XNIO-1 task-56] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:57238
+2021-10-25 15:12:58.054  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"guildId":"901221866797162547","sessionId":"6b590e348c9834157a8254733e20a750","event":{"token":"fc0d3e80330f6b5f","endpoint":"eu-central7063.discord.media:443"},"op":"voiceUpdate"}
+2021-10-25 15:13:04.277  INFO 11564 --- [XNIO-1 task-57] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:house"
+2021-10-25 15:13:05.168  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: house
+2021-10-25 15:13:12.010  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"track":"QAAAmQIAMkhvdXNlIE1peCAyMDIxIHwgVGhlIEJlc3Qgb2YgSG91c2UgMjAyMSBieSBPU09DSVRZAA1PU09DSVRZTkFUSU9OAAAAAAAYG\u002BAAC1JFYk9yMW5FdmlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9UkViT3IxbkV2aW8AB3lvdXR1YmUAAAAAAAAAAA==","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-25 15:13:13.723 ERROR 11564 --- [lava-daemon-pool-playback-1-thread-38] c.s.d.l.t.p.LocalAudioTrackExecutor      : Error in playback of REbOr1nEvio
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Something broke when playing the track.
+	at com.sedmelluq.discord.lavaplayer.tools.ExceptionTools.wrapUnfriendlyExceptions(ExceptionTools.java:44) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:116) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:348) ~[lavaplayer-1.3.76.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.76
+  os.arch: amd64
+  os.name: Windows 10
+  os.version: 10.0
+  java.vendor: Oracle Corporation
+  java.version: 11.0.12
+  java.runtime.version: 11.0.12+8-LTS-237
+  java.vm.version: 11.0.12+8-LTS-237
+Caused by: java.lang.RuntimeException: Not success status code: 403
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.validateStatusCode(PersistentHttpStream.java:87) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.attemptConnect(PersistentHttpStream.java:116) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.connect(PersistentHttpStream.java:105) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.internalRead(PersistentHttpStream.java:150) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.read(PersistentHttpStream.java:166) ~[lavaplayer-1.3.76.jar!/:na]
+	at java.base/java.io.DataInputStream.readByte(DataInputStream.java:270) ~[na:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.format.MatroskaEbmlReader.readEbmlInteger(MatroskaEbmlReader.java:39) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.format.MatroskaFileReader.readNextElement(MatroskaFileReader.java:45) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.MatroskaStreamingFile.readFile(MatroskaStreamingFile.java:78) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.MatroskaAudioTrack.loadMatroskaFile(MatroskaAudioTrack.java:51) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.MatroskaAudioTrack.process(MatroskaAudioTrack.java:34) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.DelegatedAudioTrack.processDelegate(DelegatedAudioTrack.java:25) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.processStatic(YoutubeAudioTrack.java:57) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:49) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:104) ~[lavaplayer-1.3.76.jar!/:na]
+	... 4 common frames omitted
+
+2021-10-25 15:13:23.150  INFO 11564 --- [XNIO-1 task-59] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:house"
+2021-10-25 15:13:23.871  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: house
+2021-10-25 15:13:33.431  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"track":"QAAA0AIAYk1lZ2EgSGl0cyAyMDIwIO2gvO28sSBUaGUgQmVzdCBPZiBWb2NhbCBEZWVwIEhvdXNlIE11c2ljIE1peCAyMDIwIO2gvO28sSBTdW1tZXIgTXVzaWMgTWl4IDIwMjAgIzk2ABRUcm9waWNhbCBIb3VzZSBSYWRpbwAAAAAAkAsAAAstUmtRRGxVVjRGYwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PS1Sa1FEbFVWNEZjAAd5b3V0dWJlAAAAAAAAAAA=","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-25 15:16:46.092  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"volume":10,"guildId":"901221866797162547","op":"volume"}
+2021-10-25 15:16:51.235  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"volume":20,"guildId":"901221866797162547","op":"volume"}
