@@ -3,6 +3,7 @@ using Discord.Commands;
 using DiscordBot.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -66,7 +67,25 @@ namespace DiscordBot.Modules
         [Command("when")]
         public async Task WhenSiege([Remainder]string siege)
         {
-            await _ingameService.WhenSiege(Context.Channel as ITextChannel, siege);
+            List<ulong> publicChannels = new List<ulong>();
+            using (StreamReader reader = new StreamReader(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\", @"publicChannels.txt"))))
+            {
+                string id;
+                while(!((id = reader.ReadLine()) is null))
+                {
+                    ulong.TryParse(id,out ulong result);
+                    publicChannels.Add(result);
+                }
+            }
+            if (publicChannels.Contains(Context.Channel.Id)) 
+            {
+                EmbedBuilder embed = Responses.CreateMessage($"Sorry {Context.User.Mention}, ``-when siege`` cannot be used in public chatrooms");
+                await ReplyAsync(embed: embed.Build());
+            }
+            else
+            {
+                await _ingameService.WhenSiege(Context.Channel as ITextChannel, siege);
+            }
         }
 
     }

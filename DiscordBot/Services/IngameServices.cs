@@ -51,7 +51,7 @@ namespace DiscordBot.Services
                     }
                     string zero = "";
                     if (minute == 0) zero = "0"; // dumb af lol 
-                    if (hour >= 0)  //if time makes sense
+                    if (hourUntil >= 0)  //if time makes sense
                     {
                         message = $"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} at {hour}:{minute}{zero} UTC\n**{hourUntil} hours {minuteUntil} minutes from now!**";
                         _sieges.Add(location, new Siege(location, hour, minute));
