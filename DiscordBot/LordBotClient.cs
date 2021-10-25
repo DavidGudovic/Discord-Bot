@@ -8,6 +8,7 @@ using Victoria;
 using DiscordBot.Modules.Services;
 using DiscordBot.Services;
 using Discord.Addons.Interactive;
+using System.IO;
 
 namespace DiscordBot
 {
@@ -37,7 +38,8 @@ namespace DiscordBot
 
         public async Task RunAsync()  //Logins into the server and starts the service
         {
-            await _client.LoginAsync(TokenType.Bot, "OTAxMjIwOTU4MzE1MTEwNDEx.YXMtbA.u_PkjuolbUUNQgjfjX9qjbAfRG8");  //TODO fetch token from .xaml/.json file instead of hardcode
+            string token = File.ReadAllText(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\", @"config.txt")));
+            await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
             _client.Log += LogAsync;
             _services = SetupServices();

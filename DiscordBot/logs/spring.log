@@ -572,3 +572,5 @@ Caused by: java.lang.RuntimeException: Not success status code: 403
 2021-10-25 15:13:33.431  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"track":"QAAA0AIAYk1lZ2EgSGl0cyAyMDIwIO2gvO28sSBUaGUgQmVzdCBPZiBWb2NhbCBEZWVwIEhvdXNlIE11c2ljIE1peCAyMDIwIO2gvO28sSBTdW1tZXIgTXVzaWMgTWl4IDIwMjAgIzk2ABRUcm9waWNhbCBIb3VzZSBSYWRpbwAAAAAAkAsAAAstUmtRRGxVVjRGYwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PS1Sa1FEbFVWNEZjAAd5b3V0dWJlAAAAAAAAAAA=","volume":100,"guildId":"901221866797162547","op":"play"}
 2021-10-25 15:16:46.092  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"volume":10,"guildId":"901221866797162547","op":"volume"}
 2021-10-25 15:16:51.235  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"volume":20,"guildId":"901221866797162547","op":"volume"}
+2021-10-25 16:20:11.321  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57238 -- CloseStatus[code=1006, reason=]
+2021-10-25 16:20:11.322  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
