@@ -63,6 +63,11 @@ namespace DiscordBot.Modules
                 await ReplyAsync(embed: embed.Build());
             }
         }
+        [Command("when")]
+        public async Task WhenSiege([Remainder]string siege)
+        {
+            await _ingameService.WhenSiege(Context.Channel as ITextChannel, siege);
+        }
 
     }
 }
