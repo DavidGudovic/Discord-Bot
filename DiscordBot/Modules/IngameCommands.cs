@@ -3,7 +3,9 @@ using Discord.Commands;
 using DiscordBot.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DiscordBot.Modules
@@ -48,6 +50,19 @@ namespace DiscordBot.Modules
         {
             await _ingameService.Time(Context.Channel as ITextChannel);
         }
-        
+        [Command("siege")]
+        public async Task Siege([Remainder]string siegeString)   //regex bullshit
+        {
+            if (Context.Guild.GetRole(881859016815444011).Members.Contains(Context.User))
+            {
+                await _ingameService.Siege(siegeString, Context.Channel as ITextChannel);
+            }
+            else
+            {
+                EmbedBuilder embed = Responses.CreateMessage($"You need to have the {Context.Guild.GetRole(881859016815444011).Mention} role to set sieges!");
+                await ReplyAsync(embed: embed.Build());
+            }
+        }
+
     }
 }

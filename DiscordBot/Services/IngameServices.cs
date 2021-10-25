@@ -20,6 +20,26 @@ namespace DiscordBot.Services
         {          
             await target.SendMessageAsync($"Current server time is {DateTime.UtcNow.Hour}:{DateTime.UtcNow.Minute} \n{24 - DateTime.UtcNow.Hour - 1} hours {60 - DateTime.UtcNow.Minute} minutes to reset ");         
         }
+        public async Task Siege(string siegeString, ITextChannel channel)  // -siege Adhelrond 22:00  
+        {
+            EmbedBuilder embed;
+            string[] siegeData = siegeString.Split(',', ':');
+            string location = siegeData[0].Trim();
+            int hour = Int32.Parse(siegeData[1].Trim());
+            int minute = Int32.Parse(siegeData[2].Trim());
+            int hourUntil = hour - DateTime.UtcNow.Hour - 1;
+            int minuteUntil = (60 - DateTime.UtcNow.Minute) + minute;
+            if(minuteUntil > 60)
+            {
+                hourUntil += 1;
+                minuteUntil -= 60;
+            }
+            string zero = "";
+            if (minute == 0) zero = "0"; // dumb af lol 
+            embed = Responses.CreateMessage($"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} at {hour}:{minute}{zero} UTC\n**{hourUntil} hours {Math.Abs(minuteUntil)} minutes from now!**");
+            await channel.SendMessageAsync(embed: embed.Build());
+            
+        }
 
         public async Task Stats(string unit, ITextChannel textChannel)  // posts the image of required stats from Images/Stats in project folder or lists the available.
         {
