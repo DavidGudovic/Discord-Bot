@@ -574,3 +574,25 @@ Caused by: java.lang.RuntimeException: Not success status code: 403
 2021-10-25 15:16:51.235  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"volume":20,"guildId":"901221866797162547","op":"volume"}
 2021-10-25 16:20:11.321  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:57238 -- CloseStatus[code=1006, reason=]
 2021-10-25 16:20:11.322  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2021-10-25 16:26:28.725  INFO 11564 --- [XNIO-1 task-61] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:62880
+2021-10-25 16:26:28.729  INFO 11564 --- [XNIO-1 task-61] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:62880
+2021-10-25 16:37:35.118  INFO 11564 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:62880 -- CloseStatus[code=1006, reason=]
+2021-10-25 16:37:35.119  INFO 11564 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 16:37:38.848  INFO 11564 --- [XNIO-1 task-62] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:58030
+2021-10-25 16:37:38.851  INFO 11564 --- [XNIO-1 task-62] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:58030
+2021-10-25 16:55:52.870  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"guildId":"901221866797162547","sessionId":"d1fcb6a0d425dfe97e12cd77be75b2bd","event":{"token":"0aa8a35fed665fbf","endpoint":"eu-central7063.discord.media:443"},"op":"voiceUpdate"}
+2021-10-25 16:56:08.015  INFO 11564 --- [XNIO-1 task-63] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:on the edge of adhesyon"
+2021-10-25 16:56:08.794  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: on the edge of adhesyon
+2021-10-25 16:56:24.423  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"track":"QAAAkQIAM1ZvaXNraSAmIEhhZG9uZSAtIE9uIFRoZSBFZGdlIE9mIEFkaGVzaW9uIFtWT0xUMDA0XQAESEFURQAAAAAABeugAAtjMUhXRGlxWWJYdwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWMxSFdEaXFZYlh3AAd5b3V0dWJlAAAAAAAAAAA=","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-25 16:56:32.275  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"volume":150,"guildId":"901221866797162547","op":"volume"}
+2021-10-25 18:56:38.365  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:58030 -- CloseStatus[code=1006, reason=]
+2021-10-25 18:56:38.367  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 18:56:47.247  INFO 11564 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49995
+2021-10-25 18:56:47.251  INFO 11564 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49995
+2021-10-25 18:57:10.485  INFO 11564 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49995 -- CloseStatus[code=1006, reason=]
+2021-10-25 18:57:10.485  INFO 11564 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 18:57:53.979  INFO 11564 --- [XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55583
+2021-10-25 18:57:53.981  INFO 11564 --- [XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55583
+2021-10-25 18:58:26.831  INFO 11564 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55583 -- CloseStatus[code=1006, reason=]
+2021-10-25 18:58:26.831  INFO 11564 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 18:58:32.681  INFO 11564 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50627

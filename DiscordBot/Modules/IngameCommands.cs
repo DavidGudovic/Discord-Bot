@@ -16,6 +16,22 @@ namespace DiscordBot.Modules
         {
             _ingameService = ingameService;
         }
+        [Command("join")] //common wrong spelling
+        public async Task Join([Remainder] string lord)
+        {           
+            if(lord.Contains("lord"))
+            {
+                EmbedBuilder embed;
+                embed = Responses.CreateMessage($"{Context.User.Username} you can join LORD by filling this survey: https://forms.gle/y9CPXhnH4mnuQi45A");
+                await Context.Channel.SendMessageAsync(embed: embed.Build());
+            } 
+        }
+        [Command("stat")] //common wrong spelling
+        public async Task Stat([Remainder] string unit)
+        {
+            await Stats(unit);
+        }
+                   
         [Command("stats")]
         public async Task Stats()
         {
