@@ -30,7 +30,7 @@ namespace DiscordBot.Modules.Services
             string helpMessage = 
                 $"**Game related**\n" +
                 $"-time   Displays current server time and time to server reset\n" +
-                $"-siege [keep] [Time in UTC] [days from today, empty if today]  Sets the siege time and place, alerts LORD members\n" +
+                $"-siege [keep], [Time in UTC] Sets the siege time and place, alerts LORD members\n" +
                 $"-when   Lists upcoming sieges\n" +
                 $"-join lord   Displays the link to join LORD\n" +
                 $"-stats [unit]    Displays a picture of the units stats\n" +

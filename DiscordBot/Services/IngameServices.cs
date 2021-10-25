@@ -23,21 +23,35 @@ namespace DiscordBot.Services
         public async Task Siege(string siegeString, ITextChannel channel)  // -siege Adhelrond 22:00  
         {
             EmbedBuilder embed;
+            bool passed = false;
             string[] siegeData = siegeString.Split(',', ':');
-            string location = siegeData[0].Trim();
-            int hour = Int32.Parse(siegeData[1].Trim());
-            int minute = Int32.Parse(siegeData[2].Trim());
-            int hourUntil = hour - DateTime.UtcNow.Hour - 1;
-            int minuteUntil = (60 - DateTime.UtcNow.Minute) + minute;
-            if(minuteUntil > 60)
+            int hour = 0, minute = 0;
+            string location = "";
+            if (siegeData.Length == 3)
             {
-                hourUntil += 1;
-                minuteUntil -= 60;
+                location = siegeData[0].Trim();
+                passed = Int32.TryParse(siegeData[1].Trim(), out hour);
+                passed = Int32.TryParse(siegeData[2].Trim(), out minute);
             }
-            string zero = "";
-            if (minute == 0) zero = "0"; // dumb af lol 
-            embed = Responses.CreateMessage($"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} at {hour}:{minute}{zero} UTC\n**{hourUntil} hours {Math.Abs(minuteUntil)} minutes from now!**");
-            await channel.SendMessageAsync(embed: embed.Build());
+            if (passed)
+            {
+                int hourUntil = hour - DateTime.UtcNow.Hour - 1;
+                int minuteUntil = (60 - DateTime.UtcNow.Minute) + minute;
+                if (minuteUntil > 60)
+                {
+                    hourUntil += 1;
+                    minuteUntil -= 60;
+                }
+                string zero = "";
+                if (minute == 0) zero = "0"; // dumb af lol 
+                embed = Responses.CreateMessage($"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} at {hour}:{minute}{zero} UTC\n**{hourUntil} hours {Math.Abs(minuteUntil)} minutes from now!**");
+                await channel.SendMessageAsync(embed: embed.Build());
+            }
+            else
+            {
+                embed = Responses.CreateMessage($"You've made a syntax error! Proper usage:\n``-siege [Location], [Hour]:[Minute]``");
+                await channel.SendMessageAsync(embed: embed.Build());
+            }
             
         }
 
