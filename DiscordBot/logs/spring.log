@@ -596,3 +596,12 @@ Caused by: java.lang.RuntimeException: Not success status code: 403
 2021-10-25 18:58:26.831  INFO 11564 --- [XNIO-1 I/O-3] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55583 -- CloseStatus[code=1006, reason=]
 2021-10-25 18:58:26.831  INFO 11564 --- [XNIO-1 I/O-3] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2021-10-25 18:58:32.681  INFO 11564 --- [XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:50627
+2021-10-25 18:58:32.684  INFO 11564 --- [XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:50627
+2021-10-25 19:06:14.362  INFO 11564 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:50627 -- CloseStatus[code=1006, reason=]
+2021-10-25 19:06:14.362  INFO 11564 --- [XNIO-1 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-25 20:05:22.525  INFO 11564 --- [XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:52091
+2021-10-25 20:05:22.530  INFO 11564 --- [XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:52091
+2021-10-25 20:06:23.844  INFO 11564 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"guildId":"901221866797162547","sessionId":"b3b55c4831e1cb2e2a852a68a07a568c","event":{"token":"3ba7af1ff232b461","endpoint":"eu-central7063.discord.media:443"},"op":"voiceUpdate"}
+2021-10-25 20:06:35.652  INFO 11564 --- [XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Jackson"
+2021-10-25 20:06:36.589  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Jackson
+2021-10-25 20:06:38.742  INFO 11564 --- [XNIO-1 I/O-7] lavalink.server.io.SocketServer          : {"track":"QAAAmwIAMk1pY2hhZWwgSmFja3NvbiAtIFNtb290aCBDcmltaW5hbCAoT2ZmaWNpYWwgVmlkZW8pAA9NaWNoYWVsIEphY2tzb24AAAAAAAii8AALaF9EM1ZGZmh2czQAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1oX0QzVkZmaHZzNAAHeW91dHViZQAAAAAAAAAA","volume":100,"guildId":"901221866797162547","op":"play"}

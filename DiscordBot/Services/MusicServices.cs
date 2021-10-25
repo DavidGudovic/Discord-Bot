@@ -135,10 +135,9 @@ namespace DiscordBot.Modules.Services
             }
             else
             {
-                IEnumerable<LavaTrack> tracks;
-                ulong lastMsgId;
-                _selection.TryGetValue(textChannel, out tracks);  // gets the selection for current context 
-                _lastMessageID.TryGetValue(textChannel, out lastMsgId); //gets relevant in context bot message
+               
+                _selection.TryGetValue(textChannel, out IEnumerable<LavaTrack> tracks);  // gets the selection for current context 
+                _lastMessageID.TryGetValue(textChannel, out ulong lastMsgId); //gets relevant in context bot message
                 var track = tracks.ElementAt(select - 1);
 
 
