@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DiscordBot.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace DiscordBot.Util
 {
@@ -8,7 +10,6 @@ namespace DiscordBot.Util
     {
         private string _location;
         private DateTime _time;
-
         public Siege(string location,int hour, int minute)
         {
             _location = location;

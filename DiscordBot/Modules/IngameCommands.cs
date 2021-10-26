@@ -19,7 +19,7 @@ namespace DiscordBot.Modules
         {
             _ingameService = ingameService;
         }
-        [Command("join")] //common wrong spelling
+        [Command("join")]
         public async Task Join([Remainder] string lord)
         {           
             if(lord.Contains("lord"))
@@ -52,11 +52,11 @@ namespace DiscordBot.Modules
             await _ingameService.Time(Context.Channel as ITextChannel);
         }
         [Command("siege")]
-        public async Task Siege([Remainder]string siegeString)   //regex bullshit
+        public async Task Siege([Remainder]string siegeString)   // checks role here
         {
             if (Context.Guild.GetRole(881859016815444011).Members.Contains(Context.User))
             {
-                await _ingameService.Siege(siegeString, Context.Channel as ITextChannel);
+                await _ingameService.Siege(siegeString, Context.Channel as ITextChannel, _ingameService);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace DiscordBot.Modules
             }
         }
         [Command("when")]
-        public async Task WhenSiege([Remainder]string siege)
+        public async Task WhenSiege([Remainder]string siege) //checks public channel here
         {
             List<ulong> publicChannels = new List<ulong>();
             using (StreamReader reader = new StreamReader(Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\", @"publicChannels.txt"))))
@@ -87,6 +87,7 @@ namespace DiscordBot.Modules
                 await _ingameService.WhenSiege(Context.Channel as ITextChannel, siege);
             }
         }
+       
 
     }
 }
