@@ -89,6 +89,7 @@ namespace DiscordBot.Services
             }
 
             embed = Responses.CreateMessage(message);
+            if(!success || channel.Id != 881853053442076682)
             await channel.SendMessageAsync(embed: embed.Build());
             if(success)
             await ((_client.GetGuild(859396452873666590).GetChannel(881853053442076682)) as ITextChannel).SendMessageAsync(embed: embed.Build()); // posts in #marching-orders
@@ -129,7 +130,6 @@ namespace DiscordBot.Services
             {         
                 TimeSpan remaining = DateTime.UtcNow.Subtract(siege.Time);
                 int minutes = Math.Abs((int)Math.Round(remaining.TotalMinutes));   // fuck DateTime honestly
-                Console.WriteLine($"{siege.Location}  {minutes}  works?? {siege.Time} {DateTime.UtcNow}");
                 if(minutes == 60)
                 {
                     message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}, {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention}" +
