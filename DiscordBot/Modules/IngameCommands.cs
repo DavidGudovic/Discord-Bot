@@ -19,6 +19,19 @@ namespace DiscordBot.Modules
         {
             _ingameService = ingameService;
         }
+        [Command("removeSiege")]
+        public async Task removeSiege([Remainder] string siege)
+        {
+            if (Context.Guild.GetRole(881859016815444011).Members.Contains(Context.User))
+            {
+                await _ingameService.RemoveSiege(Context.Channel as ITextChannel,siege);
+            }
+            else
+            {
+                EmbedBuilder embed = Responses.CreateMessage($"You need to have the {Context.Guild.GetRole(881859016815444011).Mention} role to remove sieges!");
+                await ReplyAsync(embed: embed.Build());
+            }
+        }
         [Command("join")]
         public async Task Join([Remainder] string lord)
         {           

@@ -32,6 +32,7 @@ namespace DiscordBot.Modules.Services
                 $"``-time``   Displays current server time and time to server reset\n" +
                 $"``-siege [keep], [Time in UTC]`` Sets the siege time and place, alerts LORD members\n" +
                 $"``-when [siege]``  Displays when a siege is scheduled\n" +
+                $"``-removeSiege [location]   Unschedules the siege\n" +
                 $"``-join lord``   Displays the link to join LORD\n" +
                 $"``-stats [unit]``    Displays a picture of the units stats\n" +
                 $"``-stats list``   Displays a list of available units\n\n" +

@@ -20,7 +20,21 @@ namespace DiscordBot.Services
             _sieges = new Dictionary<string, Siege>();
             siegeTimer = new Timer(SiegeTimers,null,0, 60000);           
         }
-
+        public async Task RemoveSiege(ITextChannel channel, string siege)   // removes the siege from the Disctionary
+        {
+            string message = "";
+            if(_sieges.TryGetValue(siege,out Siege targetSiege))
+            {
+                _sieges.Remove(siege);
+                message = $"Removed {siege}";
+            }
+            else
+            {
+                message = "No such siege scheduled, check ``-when siege`` list for siege names";
+            }
+            EmbedBuilder embed = Responses.CreateMessage(message);
+            await channel.SendMessageAsync(embed: embed.Build());
+        }
         public async Task Time(ITextChannel target) //Displays the UTC time and time to Reset
         {          
             await target.SendMessageAsync($"Current server time is {DateTime.UtcNow.Hour}:{DateTime.UtcNow.Minute} \n{24 - DateTime.UtcNow.Hour - 1} hours {60 - DateTime.UtcNow.Minute} minutes to reset ");         
