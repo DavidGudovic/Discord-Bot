@@ -132,3 +132,70 @@
 2021-10-26 03:02:54.958  INFO 11564 --- [XNIO-1 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2021-10-26 03:04:19.027  INFO 11564 --- [XNIO-1 task-57] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49502
 2021-10-26 03:04:19.030  INFO 11564 --- [XNIO-1 task-57] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49502
+2021-10-26 03:24:44.195  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"guildId":"901221866797162547","sessionId":"2e88b8dcf4c13c910e7ef71af42e285d","event":{"token":"78556576924082bb","endpoint":"eu-central4144.discord.media:443"},"op":"voiceUpdate"}
+2021-10-26 11:03:21.917  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:49502 -- CloseStatus[code=1006, reason=]
+2021-10-26 11:03:21.917  INFO 11564 --- [XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-26 11:03:30.139  INFO 11564 --- [XNIO-1 task-58] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55464
+2021-10-26 11:03:30.142  INFO 11564 --- [XNIO-1 task-58] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55464
+2021-10-26 11:03:31.755  INFO 11564 --- [XNIO-1 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:55464 -- CloseStatus[code=1006, reason=]
+2021-10-26 11:03:31.756  INFO 11564 --- [XNIO-1 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-10-26 11:03:36.631  INFO 11564 --- [XNIO-1 task-59] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:55468
+2021-10-26 11:03:36.633  INFO 11564 --- [XNIO-1 task-59] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:55468
+2021-10-26 11:06:14.580  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"guildId":"901221866797162547","sessionId":"d1e8354fcf536b725f043f6cd11d90e8","event":{"token":"a78a6d8a530910bd","endpoint":"eu-central8217.discord.media:443"},"op":"voiceUpdate"}
+2021-10-26 11:06:18.673  INFO 11564 --- [XNIO-1 task-60] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:magazin"
+2021-10-26 11:06:19.397  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: magazin
+2021-10-26 11:06:42.837  INFO 11564 --- [XNIO-1 task-62] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:magazin rano"
+2021-10-26 11:06:43.404  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: magazin rano
+2021-10-26 11:06:49.408  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"track":"QAAAlgIALU1hZ2F6aW4gLSBSYW5vLCByYW5pamUgKE9mZmljaWFsIGx5cmljIHZpZGVvKQAPQ3JvYXRpYSBSZWNvcmRzAAAAAAADqYAAC2NEMTEwZEEycmxrAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9Y0QxMTBkQTJybGsAB3lvdXR1YmUAAAAAAAAAAA==","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-26 11:06:57.369  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"volume":140,"guildId":"901221866797162547","op":"volume"}
+2021-10-26 11:07:04.578  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"volume":150,"guildId":"901221866797162547","op":"volume"}
+2021-10-26 11:26:16.928  INFO 11564 --- [XNIO-1 task-64] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:somebody"
+2021-10-26 11:26:17.760  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: somebody
+2021-10-26 11:26:23.786  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"track":"QAAArgIASkdvdHllIC0gU29tZWJvZHkgVGhhdCBJIFVzZWQgVG8gS25vdyAoZmVhdC4gS2ltYnJhKSBbT2ZmaWNpYWwgTXVzaWMgVmlkZW9dAApnb3R5ZW11c2ljAAAAAAADuSAACzhVVk5UNHd2SUdZAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9OFVWTlQ0d3ZJR1kAB3lvdXR1YmUAAAAAAAAAAA==","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-26 11:26:40.467  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"volume":150,"guildId":"901221866797162547","op":"volume"}
+2021-10-26 12:12:00.182  INFO 11564 --- [XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Eminem"
+2021-10-26 12:12:01.137  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Eminem
+2021-10-26 12:12:10.539  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"track":"QAAAgAIAG0VtaW5lbSAtIFJhcCBHb2QgKEV4cGxpY2l0KQALRW1pbmVtTXVzaWMAAAAAAAWlUAALWGJHc19xSzJQUUEAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1YYkdzX3FLMlBRQQAHeW91dHViZQAAAAAAAAAA","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-26 12:12:16.506  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"volume":150,"guildId":"901221866797162547","op":"volume"}
+2021-10-26 13:12:39.887  INFO 11564 --- [XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:somebody"
+2021-10-26 13:12:40.876  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: somebody
+2021-10-26 13:12:44.088  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"track":"QAAArgIASkdvdHllIC0gU29tZWJvZHkgVGhhdCBJIFVzZWQgVG8gS25vdyAoZmVhdC4gS2ltYnJhKSBbT2ZmaWNpYWwgTXVzaWMgVmlkZW9dAApnb3R5ZW11c2ljAAAAAAADuSAACzhVVk5UNHd2SUdZAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9OFVWTlQ0d3ZJR1kAB3lvdXR1YmUAAAAAAAAAAA==","volume":100,"guildId":"901221866797162547","op":"play"}
+2021-10-26 13:12:45.572 ERROR 11564 --- [lava-daemon-pool-playback-1-thread-38] c.s.d.l.t.p.LocalAudioTrackExecutor      : Error in playback of 8UVNT4wvIGY
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Something broke when playing the track.
+	at com.sedmelluq.discord.lavaplayer.tools.ExceptionTools.wrapUnfriendlyExceptions(ExceptionTools.java:44) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:116) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:348) ~[lavaplayer-1.3.76.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+	Suppressed: com.sedmelluq.discord.lavaplayer.tools.exception.EnvironmentInformation: 
+  lavaplayer.version: 1.3.76
+  os.arch: amd64
+  os.name: Windows 10
+  os.version: 10.0
+  java.vendor: Oracle Corporation
+  java.version: 11.0.12
+  java.runtime.version: 11.0.12+8-LTS-237
+  java.vm.version: 11.0.12+8-LTS-237
+Caused by: java.lang.RuntimeException: Not success status code: 403
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.validateStatusCode(PersistentHttpStream.java:87) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.attemptConnect(PersistentHttpStream.java:116) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.connect(PersistentHttpStream.java:105) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.internalRead(PersistentHttpStream.java:150) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.tools.io.PersistentHttpStream.read(PersistentHttpStream.java:166) ~[lavaplayer-1.3.76.jar!/:na]
+	at java.base/java.io.DataInputStream.readByte(DataInputStream.java:270) ~[na:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.format.MatroskaEbmlReader.readEbmlInteger(MatroskaEbmlReader.java:39) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.format.MatroskaFileReader.readNextElement(MatroskaFileReader.java:45) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.MatroskaStreamingFile.readFile(MatroskaStreamingFile.java:78) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.MatroskaAudioTrack.loadMatroskaFile(MatroskaAudioTrack.java:51) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.container.matroska.MatroskaAudioTrack.process(MatroskaAudioTrack.java:34) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.DelegatedAudioTrack.processDelegate(DelegatedAudioTrack.java:25) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.processStatic(YoutubeAudioTrack.java:57) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:49) ~[lavaplayer-1.3.76.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:104) ~[lavaplayer-1.3.76.jar!/:na]
+	... 4 common frames omitted
+
+2021-10-26 13:12:53.949  INFO 11564 --- [XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:somebody"
+2021-10-26 13:12:54.691  INFO 11564 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: somebody
+2021-10-26 13:12:57.772  INFO 11564 --- [XNIO-1 I/O-8] lavalink.server.io.SocketServer          : {"track":"QAAArgIASkdvdHllIC0gU29tZWJvZHkgVGhhdCBJIFVzZWQgVG8gS25vdyAoZmVhdC4gS2ltYnJhKSBbT2ZmaWNpYWwgTXVzaWMgVmlkZW9dAApnb3R5ZW11c2ljAAAAAAADuSAACzhVVk5UNHd2SUdZAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9OFVWTlQ0d3ZJR1kAB3lvdXR1YmUAAAAAAAAAAA==","volume":100,"guildId":"901221866797162547","op":"play"}
