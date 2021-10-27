@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace DiscordBot.Modules.Services
 {
-    public class MusicServices  // Connects our services (Victoria/Lavalink)
+    public class MusicServices  
     {
         private LavaNode _lavaNode;
         public DiscordSocketClient _client;
@@ -19,10 +19,10 @@ namespace DiscordBot.Modules.Services
 
         private Dictionary<ITextChannel, IEnumerable<LavaTrack>> _selection; // Saves the search results in context to where they were searched from
         private Dictionary<ITextChannel, bool> _isSelecting;
-        private Dictionary<ITextChannel, ulong> _lastMessageID;
+        private Dictionary<ITextChannel, ulong> _lastMessageID;  
 
 
-        public MusicServices(LavaNode lavaNode, DiscordSocketClient client)
+        public MusicServices(LavaNode lavaNode, DiscordSocketClient client) // Connects our services (Victoria/Lavalink)
         {
             _client = client;
             _lavaNode = lavaNode;
