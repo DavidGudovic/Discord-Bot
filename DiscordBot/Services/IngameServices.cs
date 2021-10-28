@@ -80,8 +80,9 @@ namespace DiscordBot.Services
             await channel.SendMessageAsync(embed: embed.Build());
         }
         public async Task Time(ITextChannel target) //Displays the UTC time and time to Reset
-        {          
-            await target.SendMessageAsync($"Current server time is {DateTime.UtcNow.Hour}:{DateTime.UtcNow.Minute} \n{24 - DateTime.UtcNow.Hour - 1} hours {60 - DateTime.UtcNow.Minute} minutes to reset ");         
+        {
+            TimeSpan toReset = DateTime.UtcNow.Date.AddDays(1).Subtract(DateTime.UtcNow);
+            await target.SendMessageAsync($"Current server time is {DateTime.UtcNow.ToString("HH:mm")} \n{24 - DateTime.UtcNow.Hour - 1} hours {60 - DateTime.UtcNow.Minute} minutes to reset ");         
         }
         public async Task Siege(string siegeString, ITextChannel channel, IngameServices service)  // Creates the siege and adds it to our Dictionary
         {
@@ -113,7 +114,7 @@ namespace DiscordBot.Services
                     if (time.Minute == 0) zero = "0"; // dumb af lol 
                     if (remaining.TotalMinutes > 0)  //if time makes sense
                     {
-                        message = $"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} {time.Month}/{time.Day} at {time.Hour}:{time.Minute}{zero} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
+                        message = $"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} {time.ToString("MM/dd")} at {time.ToString("HH:mm")} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
                         _sieges.Add(location, new Siege(location, time));
                         success = true;
                     }
@@ -124,7 +125,7 @@ namespace DiscordBot.Services
                 }
                 else
                 {
-                    message = $"There is already a siege set for {location} at {_sieges.GetValueOrDefault(location).Time.Hour}:{_sieges.GetValueOrDefault(location).Time.Hour} UTC";
+                    message = $"There is already a siege set for {location} at {_sieges[location].Time.ToString("MM:dd")} {_sieges[location].Time.ToString("HH:mm")} UTC";
                 }
             }
             else
@@ -148,18 +149,18 @@ namespace DiscordBot.Services
             EmbedBuilder embed;
             string message = "";
 
-            if (_sieges.Count == 0) message = "There are no sieges schedueled for today";
+            if (_sieges.Count == 0) message = "There are no sieges schedueled";
 
             if (siege.Equals("siege"))
             {
                 foreach (Siege scheduledSiege in _sieges.Values)
                 {
-                    message += $"{scheduledSiege.Location} is scheduled for {scheduledSiege.Time.Month}/{scheduledSiege.Time.Day} at {scheduledSiege.Time.Hour}:{scheduledSiege.Time.Minute} UTC\n";
+                    message += $"{scheduledSiege.Location} is scheduled for {scheduledSiege.Time.Month}/{scheduledSiege.Time.Day} at {scheduledSiege.Time.ToString("HH:mm")} UTC\n";
                 }
             }
             else if (_sieges.TryGetValue(siege, out Siege scheduledSiege))
             {
-                message += $"{scheduledSiege.Location} is set for {scheduledSiege.Time.Month}/{scheduledSiege.Time.Day} at {scheduledSiege.Time.Hour}:{scheduledSiege.Time.Minute} UTC";
+                message += $"{scheduledSiege.Location} is set for {scheduledSiege.Time.Month}/{scheduledSiege.Time.Day} at {scheduledSiege.Time.ToString("HH:mm")} UTC";
             }
             else
             {
@@ -173,11 +174,10 @@ namespace DiscordBot.Services
             string message = "";
             EmbedBuilder embed;
             string[] inspirationalQuotes;
-            Console.WriteLine("Timer works      ----");
+            Console.WriteLine("Timer proc");
             
             foreach(Siege siege in _sieges.Values)
             {
-                Console.WriteLine("Timer works      2222222222----");
                 TimeSpan remaining = siege.Time.Subtract(DateTime.UtcNow);
                 EditCountdown(siege, remaining);
                 if((int)remaining.TotalMinutes == 60)
@@ -200,31 +200,30 @@ namespace DiscordBot.Services
         }
         public void EditCountdown(Siege siege,TimeSpan remaining)  // every 1 minute edits the countdown on the siege creation message 
         {
-            string zero = "";
             string message = "";
-            if (siege.Time.Minute == 0) zero = "0";
             if (remaining.Days > 0)
             {
                 message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}," +
                     $" {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention} sieging {siege.Location} " +
-                    $"at {siege.Time.Month}/{siege.Time.Day}  {siege.Time.Hour}:{siege.Time.Minute}{zero} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
+                    $"at {siege.Time.ToString("MM:dd")}  {siege.Time.ToString("HH:mm")} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
             }
             else if (remaining.Hours > 0)
             {
                 message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}," +
                 $" {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention} sieging {siege.Location} " +
-                $"at {siege.Time.Month}/{siege.Time.Day}  {siege.Time.Hour}:{siege.Time.Minute}{zero} UTC\n**{remaining.Hours} hours {remaining.Minutes} minutes from now!**";
+                $"at {siege.Time.ToString("MM:dd")}   {siege.Time.ToString("HH:mm")} UTC\n**{remaining.Hours} hours {remaining.Minutes} minutes from now!**";
             }
             else if (remaining.Minutes > 0)
             {
                 message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}," +
                 $" {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention} sieging {siege.Location} " +
-                $"at {siege.Time.Month}/{siege.Time.Day}  {siege.Time.Hour}:{siege.Time.Minute}{zero} UTC\n**{remaining.Minutes} minutes from now!**";
+                $"at {siege.Time.ToString("MM:dd")}   {siege.Time.ToString("HH:mm")} UTC\n**{remaining.Minutes} minutes from now!**";
             }
             else if (remaining.TotalMinutes <= 1)
             {
                 message = $"{siege.Location}siege is over!";
                 _sieges.Remove(siege.Location);
+                UpdateDatabase();
             }
 
             EmbedBuilder embed = Responses.CreateMessage(message);

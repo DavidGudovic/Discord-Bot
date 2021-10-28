@@ -19,11 +19,9 @@ namespace DiscordBot.Modules
         public async Task Join()
         {
             var user = Context.User as SocketGuildUser;
-            
-
+          
             if (user.VoiceChannel is null)
             {
-                Console.WriteLine("wtf");
                 await ReplyAsync("You need to join a voice chat first");
                 return;
             }
