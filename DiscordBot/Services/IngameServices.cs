@@ -24,7 +24,7 @@ namespace DiscordBot.Services
             _client = client;
             _sieges = new Dictionary<string, Siege>();
             database = sqliteContext;
-            siegeTimer = new Timer(SiegeTimers,null,0, 50000);         
+            siegeTimer = new Timer(SiegeTimers,null,0, 60000);         
         }
         internal Task InitializeAsync()
         {
@@ -186,14 +186,13 @@ namespace DiscordBot.Services
                     message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}, {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention}" +
                               $" 1 hour to {siege.Location} siege!\nGet ready";
                 }
-                else if(remaining.TotalMinutes <= 5)
+                else if(remaining.TotalMinutes == 5)
                 {
                     Random rd = new Random();
                     int rand = rd.Next(2);
                     inspirationalQuotes = new string[] { "Let there be carnage!", "Looks like meat's back on the menu boys!", "Chaaaargeeee!" };
                     message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}, {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention}" +
                               $"{siege.Location} siege begins in {remaining.Minutes} minutes!\n{inspirationalQuotes[rand]}";
-                    _sieges.Remove(siege.Location);
                 }
                   embed = Responses.CreateMessage(message);
                 ((_client.GetGuild(859396452873666590).GetChannel(881853053442076682)) as ITextChannel).SendMessageAsync(embed: embed.Build()); // posts in #marching-orders
