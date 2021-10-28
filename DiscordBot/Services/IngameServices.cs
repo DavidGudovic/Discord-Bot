@@ -92,11 +92,17 @@ namespace DiscordBot.Services
             string location = "";
             string message;
             bool success = false;
-            if (siegeData.Length == 2)   // if false - syntax error
-            {
-                location = siegeData[0].Trim();
-                passed = DateTime.TryParse(siegeData[1], out time);
-            }
+            if (siegeData.Length == 3)   // if false - syntax error           
+              {
+                  location = siegeData[0].Trim();
+                  passed = DateTime.TryParse(siegeData[2], out time);
+              }
+                else if (siegeData.Length == 2)   // No comment
+                   {
+                      location = siegeData[0].Trim();
+                      passed = DateTime.TryParse(siegeData[1], out time);
+                    }
+            
             if (passed) // if false - syntax error
             {
                 if (!_sieges.ContainsKey(location))  // If there is no siege set for that location
