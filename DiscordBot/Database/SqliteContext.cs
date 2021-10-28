@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DiscordBot.Database
 {
@@ -18,5 +19,6 @@ namespace DiscordBot.Database
             var connection = new SqliteConnection(connectionString);
             optionsBuilder.UseSqlite(connection);
         }
+
     }
 }

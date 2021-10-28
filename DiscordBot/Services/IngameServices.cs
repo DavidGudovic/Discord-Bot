@@ -1,13 +1,16 @@
 ﻿using Discord;
 using Discord.WebSocket;
+using DiscordBot.Database;
 using DiscordBot.Util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+
 namespace DiscordBot.Services
 {
     public class IngameServices
@@ -15,20 +18,59 @@ namespace DiscordBot.Services
         public DiscordSocketClient _client;
         private Dictionary<string, Siege> _sieges;
         private Timer siegeTimer;
-        public IngameServices(DiscordSocketClient client)
+        private SqliteContext database;
+        public IngameServices(DiscordSocketClient client, SqliteContext sqliteContext)
         {
             _client = client;
             _sieges = new Dictionary<string, Siege>();
-            siegeTimer = new Timer(SiegeTimers,null,0, 6000);           
+            database = sqliteContext;
+            siegeTimer = new Timer(SiegeTimers,null,0, 6000);         
         }
-        public async Task RemoveSiege(ITextChannel channel, string siege)   // removes the siege from the Disctionary
+        internal Task InitializeAsync()
         {
+            FillSieges();
+            return Task.CompletedTask;
+        }
+
+        private async void FillSieges() // fills our Dictionary with sieges
+        {
+            await database.Database.EnsureCreatedAsync();
+            var sieges = await database.Sieges.ToListAsync();
+            foreach(SiegeTable siege in sieges)
+            {
+                _sieges.Add(siege.LocationID, new Siege(siege.LocationID,siege.Time,siege.CreationMessage));
+            }
+        }
+        private async Task UpdateDatabase()   // removes everything and adds everything back.. TODO : make it much much more efficient
+        {
+            var sieges = await database.Sieges.ToListAsync();
+            foreach(SiegeTable var in sieges)
+            {
+                database.Sieges.Remove(var);
+            }
+            foreach(Siege var in _sieges.Values)
+            {
+                database.Sieges.Add(new SiegeTable
+                {
+                    LocationID = var.Location,
+                    Time = var.Time,
+                    CreationMessage = var.CreationMessage
+                });
+            }
+            await database.SaveChangesAsync();
+        }
+
+        public async Task RemoveSiege(ITextChannel channel, string siege)   // removes the siege from the Disctionary
+        {           
             string message = "";
             if(_sieges.TryGetValue(siege,out Siege targetSiege))
             {
-                await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage);
+                 await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage); // marching orders
+                //await (_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage); // testing
                 _sieges.Remove(siege);
                 message = $"Removed {siege}";
+                
+                await UpdateDatabase();
             }
             else
             {
@@ -87,9 +129,13 @@ namespace DiscordBot.Services
             embed = Responses.CreateMessage(message);
             if(!success || channel.Id != 881853053442076682)
             await channel.SendMessageAsync(embed: embed.Build());
-            if(success)
-            _sieges[location].CreationMessage = (await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).SendMessageAsync(embed: embed.Build())).Id; // posts in #marching-orders and stores the siege creation message
-           //_sieges[location].CreationMessage = (await channel.SendMessageAsync(embed: embed.Build())).Id; // WHEN TESTING FOR NOT PINGING #MARCHING ORDERS
+            if (success) 
+            {
+                _sieges[location].CreationMessage = (await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).SendMessageAsync(embed: embed.Build())).Id; // posts in #marching-orders and stores the siege creation message
+                //_sieges[location].CreationMessage = (await channel.SendMessageAsync(embed: embed.Build())).Id; // WHEN TESTING FOR NOT PINGING #MARCHING ORDERS
+                await UpdateDatabase(); 
+            }
+
         }
         public async Task WhenSiege(ITextChannel channel, string siege) //Displays the UTC time and time to Reset
         {
@@ -143,7 +189,7 @@ namespace DiscordBot.Services
                     _sieges.Remove(siege.Location);
                 }
                   embed = Responses.CreateMessage(message);
-                  ((_client.GetGuild(859396452873666590).GetChannel(881853053442076682)) as ITextChannel).SendMessageAsync(embed: embed.Build()); // posts in #marching-orders
+                ((_client.GetGuild(859396452873666590).GetChannel(881853053442076682)) as ITextChannel).SendMessageAsync(embed: embed.Build()); // posts in #marching-orders
             }
         }
         public void EditCountdown(Siege siege,TimeSpan remaining)  // every 1 minute edits the countdown on the siege creation message 
@@ -177,7 +223,7 @@ namespace DiscordBot.Services
 
             EmbedBuilder embed = Responses.CreateMessage(message);
             (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Embed = embed.Build()); // #marching orders
-            //  (_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Embed = embed.Build()); // When testing use this
+            //(_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Embed = embed.Build()); // When testing use this
 
         }
         public async Task Stats(string unit, ITextChannel textChannel)  // posts the image of required stats from Images/Stats in project folder or lists the available.

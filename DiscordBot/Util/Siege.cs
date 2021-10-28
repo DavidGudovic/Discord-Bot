@@ -17,6 +17,13 @@ namespace DiscordBot.Util
             _time = time;
             _creationMessage = 0;
         }
+        public Siege(string location, DateTime time, ulong creationMessage)
+        {
+            _location = location;
+            _time = time;
+            _creationMessage = creationMessage;
+        }
+
 
         public string Location { get => _location; set => _location = value; }
         public DateTime Time { get => _time; set => _time = value; }

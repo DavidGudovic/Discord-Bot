@@ -5,11 +5,11 @@ using System.Text;
 
 namespace DiscordBot.Database
 {
-    public class SiegeTable
+    public partial class SiegeTable
     {
-        [Key]
-        public long AnswerId { get; set; }
-        public string AnswerText { get; set; }
-        public string AnswerColor { get; set; }
+        [Key]      
+        public string LocationID { get; set; }
+        public DateTime Time { get; set; }
+        public ulong CreationMessage { get; set; }
     }
 }

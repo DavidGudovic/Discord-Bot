@@ -1,5 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
+using DiscordBot.Database;
 using DiscordBot.Services;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,10 @@ namespace DiscordBot.Modules
     public class IngameCommands : ModuleBase<SocketCommandContext>
     {
         private IngameServices _ingameService;
-
         public IngameCommands(IngameServices ingameService)
         {
             _ingameService = ingameService;
+           
         }
         [Command("removeSiege")]
         public async Task removeSiege([Remainder] string siege)

@@ -11,5 +11,6 @@ namespace DiscordBot
         {
             Environment.Exit(1);
         }
+        
     }
 }

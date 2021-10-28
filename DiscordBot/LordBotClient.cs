@@ -9,6 +9,7 @@ using DiscordBot.Modules.Services;
 using DiscordBot.Services;
 using Discord.Addons.Interactive;
 using System.IO;
+using DiscordBot.Database;
 
 namespace DiscordBot
 {
@@ -48,6 +49,7 @@ namespace DiscordBot
             await cmdHandler.InitilizeAsync();
 
             await _services.GetRequiredService<MusicServices>().InitializeAsync();
+            await _services.GetRequiredService<IngameServices>().InitializeAsync();
             await Task.Delay(-1);
         }
 
@@ -66,6 +68,7 @@ namespace DiscordBot
             .AddSingleton<ApplicationServices>()
             .AddSingleton<LordDiscordServices>()
             .AddSingleton<IngameServices>()
+            .AddDbContext<SqliteContext>()
             .BuildServiceProvider();
     }
 }
