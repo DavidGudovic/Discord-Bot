@@ -31,7 +31,7 @@ namespace DiscordBot.Modules.Services
             string helpMessage = 
                 $"**Game related**\n" +
                 $"``-time``   Displays current server time and time to server reset\n" +
-                $"``-siege [keep], [Time in UTC]`` Sets the siege time and place, alerts LORD members\n" +
+                $"``-siege [Location] | [comment] | [MM/dd/yyyy HH:MM] [image]`` Sets the siege time and place, alerts LORD members\n" +
                 $"``-when [siege]``  Displays when a siege is scheduled\n" +
                 $"``-removeSiege [location]``   Unschedules the siege\n" +
                 $"``-join lord``   Displays the link to join LORD\n" +
@@ -66,16 +66,7 @@ namespace DiscordBot.Modules.Services
         {
             await channel.SendMessageAsync("Pong!");
         }
-       /* public async Task Test(ITextChannel channel, SocketUserMessage message)
-        {
-            EmbedBuilder embed;
-            embed = Responses.CreateSiegeMessage(message.Content, message.Attachments.ToList().Last().Url);
-            IUserMessage msg = await channel.SendMessageAsync("Test",embed: embed.Build());
-        }
-        public async Task TestEd(ITextChannel channel, SocketUserMessage message)
-        {
 
-        }*/
 
     }
 }
