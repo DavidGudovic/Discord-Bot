@@ -133,11 +133,9 @@ namespace DiscordBot.Services
             if (success) 
             {
                     embed = Responses.CreateSiegeMessage(message, command.Attachments.ToList().First().Url, location, time.ToString("MM/dd HH:mm"));
-                    await command.DeleteAsync();
                     _sieges[location].CreationMessage = (await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).SendMessageAsync($"**{timer}**",embed: embed.Build())).Id; // posts in #marching-orders and stores the siege creation message
                    // _sieges[location].CreationMessage = (await channel.SendMessageAsync($"**{timer}**", embed: embed.Build())).Id; // WHEN TESTING FOR NOT PINGING #MARCHING ORDERS
                     await UpdateDatabase();
-                    await command.DeleteAsync();
             }
             if (!success)
             {
