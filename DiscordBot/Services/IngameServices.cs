@@ -24,7 +24,7 @@ namespace DiscordBot.Services
             _client = client;
             _sieges = new Dictionary<string, Siege>();
             database = sqliteContext;
-            siegeTimer = new Timer(SiegeTimers,null,0, 6000);         
+            siegeTimer = new Timer(SiegeTimers,null,0, 50000);         
         }
         internal Task InitializeAsync()
         {

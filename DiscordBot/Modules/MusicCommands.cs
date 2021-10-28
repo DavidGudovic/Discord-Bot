@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using DiscordBot.Modules.Services;
 using Discord;
+using System;
 
 namespace DiscordBot.Modules
 {
@@ -18,14 +19,17 @@ namespace DiscordBot.Modules
         public async Task Join()
         {
             var user = Context.User as SocketGuildUser;
-            var perms = Context.Guild.CurrentUser.GetPermissions(user.VoiceChannel);
+            
+
             if (user.VoiceChannel is null)
             {
-                await ReplyAsync("You need to join the music voice chat");
+                Console.WriteLine("wtf");
+                await ReplyAsync("You need to join a voice chat first");
                 return;
             }
             else
             {
+                var perms = Context.Guild.CurrentUser.GetPermissions(user.VoiceChannel);
                 if (perms.Connect == true)
                     await _musicService.ConnectAssync(user.VoiceChannel, Context.Channel as ITextChannel, user.Guild);
                 else
