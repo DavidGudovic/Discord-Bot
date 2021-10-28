@@ -87,7 +87,7 @@ namespace DiscordBot.Services
         {
             EmbedBuilder embed;
             bool passed = false;
-            string[] siegeData = siegeString.Split(", ");
+            string[] siegeData = siegeString.Split("|");
             DateTime time = DateTime.UtcNow;
             string location = "";
             string message;
