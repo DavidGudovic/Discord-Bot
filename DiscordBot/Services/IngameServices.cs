@@ -65,12 +65,12 @@ namespace DiscordBot.Services
             string message = "";
             if(_sieges.TryGetValue(siege,out Siege targetSiege))
             {
-                 await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage); // marching orders
-                //await (_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage); // testing
                 _sieges.Remove(siege);
                 message = $"Removed {siege}";
-                
                 await UpdateDatabase();
+                await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage); // marching orders
+               // await (_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).DeleteMessageAsync(targetSiege.CreationMessage); // testing
+
             }
             else
             {
@@ -93,27 +93,26 @@ namespace DiscordBot.Services
             DateTime time = DateTime.UtcNow;
             string location = "";
             string message;
+            string comment = "";
             bool success = false;
+            string timer = "";
             if (siegeData.Length == 3)   // if false - syntax error           
               {
                   location = siegeData[0].Trim();
+                  comment = siegeData[1];
                   passed = DateTime.TryParse(siegeData[2], out time);
-              }
-                else if (siegeData.Length == 2)   // No comment
-                   {
-                      location = siegeData[0].Trim();
-                      passed = DateTime.TryParse(siegeData[1], out time);
-                    }
-            
+                  if (command.Attachments.ToList().Count < 1) passed = false;
+              }          
             if (passed) // if false - syntax error
             {
                 if (!_sieges.ContainsKey(location))  // If there is no siege set for that location
                 {
                     TimeSpan remaining = time.Subtract(DateTime.UtcNow);
+                    timer = $"{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!";
                     Console.WriteLine(remaining.ToString());
                     if (remaining.TotalMinutes > 0)  //if time makes sense
                     {
-                        message = $"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} {time.ToString("MM/dd")} at {time.ToString("HH:mm")} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
+                        message = $"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} \n{comment}";
                         _sieges.Add(location, new Siege(location, time));
                         success = true;
                     }
@@ -129,17 +128,22 @@ namespace DiscordBot.Services
             }
             else
             {
-               message = $"You've made a syntax error! Proper usage:\n``-siege [Location], [MM/dd/yyyy HH:MM]``";
+               message = $"You've made a syntax error! Proper usage:\n``-siege [Location] | [comment] | [MM/dd/yyyy HH:MM] [image]``";
             }
-            await command.DeleteAsync();
-            embed = Responses.CreateMessage(message);
-            if(!success || channel.Id != 881853053442076682)
-            await channel.SendMessageAsync(embed: embed.Build());
             if (success) 
             {
-                _sieges[location].CreationMessage = (await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).SendMessageAsync(embed: embed.Build())).Id; // posts in #marching-orders and stores the siege creation message
-                //_sieges[location].CreationMessage = (await channel.SendMessageAsync(embed: embed.Build())).Id; // WHEN TESTING FOR NOT PINGING #MARCHING ORDERS
-                await UpdateDatabase(); 
+                    embed = Responses.CreateSiegeMessage(message, command.Attachments.ToList().First().Url, location, time.ToString("MM/dd HH:mm"));
+                    await command.DeleteAsync();
+                    _sieges[location].CreationMessage = (await (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).SendMessageAsync($"**{timer}**",embed: embed.Build())).Id; // posts in #marching-orders and stores the siege creation message
+                   // _sieges[location].CreationMessage = (await channel.SendMessageAsync($"**{timer}**", embed: embed.Build())).Id; // WHEN TESTING FOR NOT PINGING #MARCHING ORDERS
+                    await UpdateDatabase();
+                    await command.DeleteAsync();
+            }
+            if (!success)
+            {
+                embed = Responses.CreateMessage(message);
+                await channel.SendMessageAsync(embed: embed.Build());
+                await command.DeleteAsync();
             }
 
         }
@@ -202,32 +206,26 @@ namespace DiscordBot.Services
             string message = "";
             if (remaining.Days > 0)
             {
-                message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}," +
-                    $" {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention} sieging {siege.Location} " +
-                    $"at {siege.Time.ToString("MM:dd")}  {siege.Time.ToString("HH:mm")} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
+                message = $"**{ remaining.Days} days { remaining.Hours} hours { remaining.Minutes} minutes from now!**";
             }
             else if (remaining.Hours > 0)
             {
-                message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}," +
-                $" {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention} sieging {siege.Location} " +
-                $"at {siege.Time.ToString("MM:dd")}   {siege.Time.ToString("HH:mm")} UTC\n**{remaining.Hours} hours {remaining.Minutes} minutes from now!**";
+                message = $"** { remaining.Hours} hours { remaining.Minutes} minutes from now!**";
             }
             else if (remaining.Minutes > 0)
             {
-                message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}," +
-                $" {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention} sieging {siege.Location} " +
-                $"at {siege.Time.ToString("MM:dd")}   {siege.Time.ToString("HH:mm")} UTC\n**{remaining.Minutes} minutes from now!**";
+                message = $"**{ remaining.Minutes} minutes from now!**";
             }
             else if (remaining.TotalMinutes <= 1)
             {
-                message = $"{siege.Location}siege is over!";
+                message = $"**{siege.Location}siege is over!**";
                 _sieges.Remove(siege.Location);
                 UpdateDatabase();
             }
 
             EmbedBuilder embed = Responses.CreateMessage(message);
-            (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Embed = embed.Build()); // #marching orders
-            //(_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Embed = embed.Build()); // When testing use this
+            (_client.GetGuild(859396452873666590).GetChannel(881853053442076682) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Content = message); // #marching orders
+           // (_client.GetGuild(859396452873666590).GetChannel(901519429823791164) as ITextChannel).ModifyMessageAsync(siege.CreationMessage, msg => msg.Content = message); // When testing use this
 
         }
         public async Task Stats(string unit, ITextChannel textChannel)  // posts the image of required stats from Images/Stats in project folder or lists the available.

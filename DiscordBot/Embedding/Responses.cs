@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
@@ -43,6 +45,14 @@ namespace DiscordBot
         public static EmbedBuilder CreateMessage(string message)
         {
             return new EmbedBuilder().WithDescription(message)
+                                     .WithColor(Color.Teal);
+        }
+        public static EmbedBuilder CreateSiegeMessage(string comment,string url,string location, string time)   // for testing
+        {
+            return new EmbedBuilder().WithTitle("**SIEGE NOTICE**")
+                                     .WithDescription(comment)
+                                     .WithImageUrl(url)
+                                     .WithFields(new EmbedFieldBuilder().WithIsInline(true).WithName("Where").WithValue(location), new EmbedFieldBuilder().WithIsInline(true).WithName("When").WithValue($"{time} UTC"))
                                      .WithColor(Color.Teal);
         }
     }

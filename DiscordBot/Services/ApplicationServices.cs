@@ -3,6 +3,7 @@ using Discord.WebSocket;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DiscordBot.Modules.Services
 {
@@ -65,6 +66,16 @@ namespace DiscordBot.Modules.Services
         {
             await channel.SendMessageAsync("Pong!");
         }
+       /* public async Task Test(ITextChannel channel, SocketUserMessage message)
+        {
+            EmbedBuilder embed;
+            embed = Responses.CreateSiegeMessage(message.Content, message.Attachments.ToList().Last().Url);
+            IUserMessage msg = await channel.SendMessageAsync("Test",embed: embed.Build());
+        }
+        public async Task TestEd(ITextChannel channel, SocketUserMessage message)
+        {
+
+        }*/
 
     }
 }

@@ -101,7 +101,7 @@ namespace DiscordBot.Modules
                 await _ingameService.WhenSiege(Context.Channel as ITextChannel, siege);
             }
         }
-       
+
 
     }
 }
