@@ -25,7 +25,7 @@ namespace DiscordBot.Modules
         {
             if (Context.Guild.GetRole(881859016815444011).Members.Contains(Context.User))
             {
-                await _ingameService.RemoveSiege(Context.Channel as ITextChannel,siege);
+                await _ingameService.RemoveSiege(Context.Channel as ITextChannel,siege, Context.Message);
             }
             else
             {
@@ -70,7 +70,7 @@ namespace DiscordBot.Modules
         {
             if (Context.Guild.GetRole(881859016815444011).Members.Contains(Context.User))
             {
-                await _ingameService.Siege(siegeString, Context.Channel as ITextChannel, _ingameService);
+                await _ingameService.Siege(siegeString, Context.Channel as ITextChannel, _ingameService, Context.Message);
             }
             else
             {

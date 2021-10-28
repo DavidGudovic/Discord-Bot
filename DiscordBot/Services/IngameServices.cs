@@ -60,7 +60,7 @@ namespace DiscordBot.Services
             await database.SaveChangesAsync();
         }
 
-        public async Task RemoveSiege(ITextChannel channel, string siege)   // removes the siege from the Disctionary
+        public async Task RemoveSiege(ITextChannel channel, string siege, SocketUserMessage command)   // removes the siege from the Disctionary
         {           
             string message = "";
             if(_sieges.TryGetValue(siege,out Siege targetSiege))
@@ -76,6 +76,7 @@ namespace DiscordBot.Services
             {
                 message = "No such siege scheduled, check ``-when siege`` list for siege names";
             }
+            await command.DeleteAsync();
             EmbedBuilder embed = Responses.CreateMessage(message);
             await channel.SendMessageAsync(embed: embed.Build());
         }
@@ -84,7 +85,7 @@ namespace DiscordBot.Services
             TimeSpan toReset = DateTime.UtcNow.Date.AddDays(1).Subtract(DateTime.UtcNow);
             await target.SendMessageAsync($"Current server time is {DateTime.UtcNow.ToString("HH:mm")} \n{24 - DateTime.UtcNow.Hour - 1} hours {60 - DateTime.UtcNow.Minute} minutes to reset ");         
         }
-        public async Task Siege(string siegeString, ITextChannel channel, IngameServices service)  // Creates the siege and adds it to our Dictionary
+        public async Task Siege(string siegeString, ITextChannel channel, IngameServices service, SocketUserMessage command)  // Creates the siege and adds it to our Dictionary
         {
             EmbedBuilder embed;
             bool passed = false;
@@ -110,8 +111,6 @@ namespace DiscordBot.Services
                 {
                     TimeSpan remaining = time.Subtract(DateTime.UtcNow);
                     Console.WriteLine(remaining.ToString());
-                    string zero = "";
-                    if (time.Minute == 0) zero = "0"; // dumb af lol 
                     if (remaining.TotalMinutes > 0)  //if time makes sense
                     {
                         message = $"{channel.Guild.GetRole(862360736021217281).Mention}, {channel.Guild.GetRole(889014083888771112).Mention} sieging {location} {time.ToString("MM/dd")} at {time.ToString("HH:mm")} UTC\n**{remaining.Days} days {remaining.Hours} hours {remaining.Minutes} minutes from now!**";
@@ -132,7 +131,7 @@ namespace DiscordBot.Services
             {
                message = $"You've made a syntax error! Proper usage:\n``-siege [Location], [MM/dd/yyyy HH:MM]``";
             }
-
+            await command.DeleteAsync();
             embed = Responses.CreateMessage(message);
             if(!success || channel.Id != 881853053442076682)
             await channel.SendMessageAsync(embed: embed.Build());
