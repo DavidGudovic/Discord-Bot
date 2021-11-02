@@ -186,13 +186,13 @@ namespace DiscordBot.Services
                     message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}, {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention}" +
                               $" 1 hour to {siege.Location} siege!\nGet ready";
                 }
-                else if(remaining.TotalMinutes == 5)
+                else if((int)remaining.TotalMinutes == 5)
                 {
                     Random rd = new Random();
                     int rand = rd.Next(2);
                     inspirationalQuotes = new string[] { "Let there be carnage!", "Looks like meat's back on the menu boys!", "Chaaaargeeee!" };
                     message = $"{_client.GetGuild(859396452873666590).GetRole(862360736021217281).Mention}, {_client.GetGuild(859396452873666590).GetRole(889014083888771112).Mention}" +
-                              $"{siege.Location} siege begins in {remaining.Minutes} minutes!\n{inspirationalQuotes[rand]}";
+                              $"{siege.Location} siege begins in {remaining.Minutes} minutes!\n{inspirationalQuotes[rand]}";               
                 }
                   embed = Responses.CreateMessage(message);
                 ((_client.GetGuild(859396452873666590).GetChannel(881853053442076682)) as ITextChannel).SendMessageAsync(embed: embed.Build()); // posts in #marching-orders
@@ -215,7 +215,7 @@ namespace DiscordBot.Services
             }
             else if (remaining.TotalMinutes <= 1)
             {
-                message = $"**{siege.Location}siege is over!**";
+                message = $"**{siege.Location} siege is over!**";
                 _sieges.Remove(siege.Location);
                 UpdateDatabase();
             }
