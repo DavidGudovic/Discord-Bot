@@ -1,6 +1,6 @@
-# LORD S19 
-Discord bot made for lotr:r2w wb Lord's discord server\
-Made with the Discord.Net api and Victoria\
+# Video game discord channel bot
+Discord bot used by a gaming discord server for lotr:rw
+Made with Discord.Net and Victoria\
 To use create a config.txt file in LordBot/DiscordBot/ with a new bot token\
 
 # FEATURES
